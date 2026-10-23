@@ -1,7 +1,5 @@
 # OmniCode Mobile
 
-![OmniCode Mobile logo](omnicode-logo.png)
-
 **OmniCode Mobile** is an Android coding workspace with a dark editor interface and on-device execution. This project is an early offline-runtime build, not yet a complete all-language compiler suite.
 
 ## Offline execution status
