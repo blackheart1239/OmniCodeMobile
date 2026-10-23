@@ -39,7 +39,7 @@ jobs:
       - name: Extract source project
         run: |
           mkdir -p buildsrc
-          unzip -q OmniCodeMobile-source.zip -d buildsrc
+          unzip -q Source Code.zip -d buildsrc
           SETTINGS=$(find buildsrc -name settings.gradle.kts -type f | head -1)
           if [ -z "$SETTINGS" ]; then
             echo "ERROR: settings.gradle.kts not found"
