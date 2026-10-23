@@ -1,7 +1,5 @@
 # OmniCode Mobile
 
-![OmniCode Mobile logo](omnicode-logo.png)
-
 **OmniCode Mobile** is an Android-first coding workspace designed to run supported languages locally, including when the phone has no internet connection.
 
 > **Current verified scope:** JavaScript and Python are configured for offline execution. C and C++ are the next planned integration; they are **not executable offline in this build yet**.
