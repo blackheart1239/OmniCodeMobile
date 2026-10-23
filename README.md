@@ -1,6 +1,6 @@
-# OmniCode Mobile — Android starter project
+# OmniCode Mobile
 
-OmniCode Mobile is a buildable Android Studio starter for a hybrid mobile coding IDE.
+OmniCode Mobile is a hybrid mobile coding IDE.
 
 ## Implemented in v0.1.0
 - Native Android shell with a local HTML/JavaScript editor UI.
