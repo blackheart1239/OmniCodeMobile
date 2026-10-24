@@ -1,0 +1,52 @@
+
+name: Build OmniCode offline C compiler
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-tcc-arm64:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK
+        run: sdkmanager "ndk;27.2.12479018"
+
+      - name: Set NDK path
+        run: echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.2.12479018" >> "$GITHUB_ENV"
+
+      - name: Verify build script
+        run: test -f scripts/build-tcc-toolchain.sh
+
+      - name: Build compiler
+        run: bash scripts/build-tcc-toolchain.sh
+
+      - name: Locate compiler archive
+        run: |
+          ARCHIVE="$(find . -type f -name omnicode-tcc-arm64.zip \
+            -not -path './.git/*' -print -quit)"
+          test -n "$ARCHIVE"
+          cp "$ARCHIVE" ./omnicode-tcc-arm64.zip
+
+      - name: Upload compiler bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: omnicode-tcc-arm64
+          path: omnicode-tcc-arm64.zip
+          if-no-files-found: error
+          retention-days: 14
