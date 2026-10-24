@@ -28,10 +28,6 @@ OmniCode Mobile is a small Android coding workspace with local Python/JavaScript
 - Tap **Export file** and choose where to save the current code. The suggested filename follows the selected language.
 - Import/export uses Android's Storage Access Framework; no broad storage permission is needed.
 
-## Build using GitHub Actions
-
-The project uses Android Gradle Plugin 8.9.1, Kotlin 2.0.21, Chaquopy 16.1.0, Java 17, compile SDK 35, and Python 3.12. Keep your repository's existing workflow that extracts `OmniCodeMobile-source.zip` and runs `assembleDebug`. Upload this ZIP using the exact filename expected by your workflow, then run the workflow and download the APK artifact only if the build succeeds.
-
 ## Quick C example
 
 ```c
