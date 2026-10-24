@@ -1,4 +1,4 @@
-# OmniCode Mobile v0.5.0-alpha.2
+# OmniCode Mobile v0.5.0
 
 OmniCode Mobile is an early-development Android coding workspace. This is an **alpha source build**, not a stable release.
 
