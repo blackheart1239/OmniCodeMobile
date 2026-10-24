@@ -1,1 +1,73 @@
 
+name: Build C/C++ ARM64 Toolchain
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-toolchain:
+    name: Build Android ARM64 Clang Toolchain
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            clang \
+            lld \
+            llvm \
+            zip \
+            unzip \
+            file
+
+      - name: Prepare toolchain bundle
+        run: |
+          set -eux
+
+          mkdir -p bundle/bin
+          mkdir -p bundle/share
+
+          CLANG="$(command -v clang)"
+          CLANGXX="$(command -v clang++)"
+          LLD="$(command -v ld.lld)"
+
+          cp "$CLANG" bundle/bin/clang
+          cp "$CLANGXX" bundle/bin/clang++
+          cp "$LLD" bundle/bin/ld.lld
+
+          clang --version
+          clang++ --version
+          ld.lld --version
+
+          cat > bundle/README.txt <<'EOF'
+          Experimental OmniCode C/C++ toolchain bundle.
+
+          This bundle contains host Linux compiler executables.
+          It is NOT a standalone Android ARM64 toolchain.
+
+          It does not include the Android-compatible C/C++ headers,
+          target runtime libraries, Android linker environment, or
+          an Android execution integration.
+
+          Do not install this bundle into OmniCode as a working
+          offline compiler. A complete Android-targeted toolchain
+          must be built and tested separately.
+          EOF
+
+          zip -r omnicode-clang-arm64.zip bundle
+
+          unzip -t omnicode-clang-arm64.zip
+          ls -lh omnicode-clang-arm64.zip
+
+      - name: Upload experimental artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: omnicode-clang-arm64
+          path: omnicode-clang-arm64.zip
+          if-no-files-found: error
+          retention-days: 7
+          
