@@ -22,15 +22,6 @@ OmniCode Mobile is an Android coding workspace with offline execution for the ru
 - Kept Python execution on Chaquopy and clear unsupported-language messages.
 - Version metadata updated to 0.4.0 / versionCode 3.
 
-## Build with GitHub Actions
-
-1. Upload the contents of this source ZIP to your repository as `OmniCodeMobile-source.zip` (keep the ZIP filename exact).
-2. Keep the repository workflow `.github/workflows/android.yml` that extracts `OmniCodeMobile-source.zip`, locates `settings.gradle.kts`, and runs `assembleDebug`.
-3. Open **Actions → Build OmniCode Mobile APK → Run workflow**.
-4. Download the `OmniCodeMobile-debug-apk` artifact from the successful run.
-
-Build environment: Java 17, Gradle 8.11.1, Android SDK platform 35 / build tools 35.0.0. The APK must be built and tested on a device before calling the release verified.
-
 ## Test JavaScript
 
 ```javascript
